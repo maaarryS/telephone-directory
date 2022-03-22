@@ -1,0 +1,30 @@
+.container {
+  min-width: 800px;
+  margin: 0 auto;
+  padding-top: 3rem;
+}
+
+.container-sm {
+  width: 800px;
+  margin: auto;
+  margin-bottom: 20px;
+  width: 50%;
+  border: 3px solid green;
+  padding: 10px;
+}
+
+.row {
+  display: flex;
+
+  .label-id {
+    width: 10rem
+  }
+
+  .form-data {
+    width: 15rem
+  }
+}
+
+h1 {
+  text-align: center;
+}
