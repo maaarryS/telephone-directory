@@ -1,0 +1,47 @@
+<form [formGroup]="form"  class="container-sm" (ngSubmit)="onSubmit()" novalidate>
+  <div class="row g-2 align-items-center">
+    <div class="col-auto label-id">
+      <label for="formData" class="col-form-label">First Name</label>
+    </div>
+    <div class="col-auto">
+      <input type="text" formControlName="firstName" class="form-data form-control" placeholder="Enter you first name here" aria-describedby="passwordHelpInline"
+      required uniqueName>
+    </div>
+  </div>
+  <div class="row g-2 align-items-center">
+    <div class="col-auto label-id">
+      <label for="formData" class="col-form-label">Last Name</label>
+    </div>
+    <div class="col-auto">
+      <input type="text" formControlName="lastName" class="form-data form-control" placeholder="Enter you last name here" aria-describedby="passwordHelpInline"
+      required uniqueName>
+    </div>
+  </div>
+  <ng-container formArrayName="telephoneNumbers" class="row g-2 align-items-center">
+    <ng-container class="telephone-number" *ngFor="let telNumForm of telephoneNumbers.controls; let i = index" >
+      <div class="lesson-form-row row">
+        <div class="col-auto label-id">
+          <label [hidden]="i" for="formData" class="col-form-label">Telephone Number</label>
+        </div>
+        <div class="col-auto">
+          <input type="text" formControlName="{{i}}" class="form-data form-control" placeholder="Enter you Telephone number here" 
+          aria-describedby="passwordHelpInline" required telephoneNumber>
+        </div>
+        <div class="col-auto">
+          <button (click)="onRemoveBtnClick(i)" *ngIf="telephoneNumbers.length"><i class="material-icons">clear</i></button>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+
+  <button class="btn btn-primary" type="submit">Register</button>
+
+  
+
+  </form>
+
+
+  <button (click)="onAddBtnClick()">
+    <i class="material-icons">add</i>
+    <p>Add Telephone Number</p>
+  </button>
