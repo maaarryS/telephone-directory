@@ -1,0 +1,30 @@
+{
+  "userList": [
+    {
+      "firstName": "Mariia",
+      "lastName": "Sadova",
+      "telephoneNumbers": [
+        "+380667947800"
+      ],
+      "id": 1
+    },
+    {
+      "firstName": "Mariia",
+      "lastName": "Sadova",
+      "telephoneNumbers": [
+        "+380667947800"
+      ],
+      "id": 2
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

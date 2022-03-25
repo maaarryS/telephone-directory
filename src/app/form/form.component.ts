@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormArray, FormBuilder } from '@angular/forms';
+import { ApiService } from './../services/api.service';
 
 export interface Users {
   firstName: string
@@ -14,31 +15,31 @@ export interface Users {
 })
 export class FormComponent {
 
-  submitted = false;
+  form !: FormGroup;
 
-  userList: [];
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private api: ApiService) {}
 
-  form = this.fb.group( {
-    firstName: this.fb.control('', [
-      Validators.required,
-      Validators.minLength(2),
-      Validators.pattern('^[_A-z0-9]*((-|s)*[_A-z0-9])*$'),
-    ]),
-    lastName: this.fb.control('', [
-      Validators.required,
-      Validators.minLength(2),
-      Validators.pattern('^[_A-z0-9]*((-|s)*[_A-z0-9])*$'),
-    ]),
-    telephoneNumbers: this.fb.array([])
-  }  );
+  ngOnInit(): void {
+    this.form = this.fb.group( {
+      firstName: this.fb.control('', [
+        Validators.required,
+        Validators.minLength(2),
+        Validators.pattern('^[_A-z0-9]*((-|s)*[_A-z0-9])*$'),
+      ]),
+      lastName: this.fb.control('', [
+        Validators.required,
+        Validators.minLength(2),
+        Validators.pattern('^[_A-z0-9]*((-|s)*[_A-z0-9])*$'),
+      ]),
+      telephoneNumbers: this.fb.array([])
+    }  );
+  }
 
   get telephoneNumbers() {
     return this.form.controls["telephoneNumbers"] as FormArray;
   }
   
-
   onAddBtnClick() {
     this.telephoneNumbers.push(this.fb.control('', [
       Validators.required,
@@ -52,17 +53,24 @@ export class FormComponent {
   }
 
   onSubmit() {
-    let userData = JSON.stringify(this.form.value);
-    this.submitted = true;
-    console.log(this.userList);
     
-    if (!this.form.valid) {
-      alert('Please fill all the required fields to create a super hero!');
-      return false;
-    } else {
-      return console.log(userData);
-    }
-  }
+    console.log(this.form.value);
 
-  //ngOnInit(): void {}
+    if(this.form.valid) {
+      this.api.postUser(this.form.value)
+      .subscribe({
+        next:(res)=>{
+          alert('User added successfully!');
+          this.form.reset()
+        },
+        error:()=>{
+          alert('Error while adding user!')
+        }
+      })
+    }
+    
+  
+
+  
+}
 }

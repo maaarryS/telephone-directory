@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from './services/api.service';
 
 export interface Users {
   firstName: string
@@ -21,6 +22,8 @@ export interface Users {
 export class AppComponent implements OnInit {
   title = 'test-program';
 
+  constructor(private api : ApiService) {}
+
   telData: number
   
   index: number
@@ -31,7 +34,21 @@ export class AppComponent implements OnInit {
     {firstName: 'Misha', lastName: 'Oleksin', telephoneNumber: '+3594916919'}
   ]
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getAllUsers();
+  }
+
+  getAllUsers() {
+    this.api.getUser()
+    .subscribe({
+      next:(res)=>{
+        console.log(res);
+      },
+      error:(error)=>{
+        alert('Error while fetching the User!')
+      }
+    })
+  }
     
 
 }
