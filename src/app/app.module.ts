@@ -8,6 +8,15 @@ import { AppComponent } from './app.component';
 import { FormComponent } from './form/form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import {MatTableModule} from '@angular/material/table';
+import {MatIconModule} from '@angular/material/icon';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatButtonModule} from '@angular/material/button';
+import {MatDialogModule} from '@angular/material/dialog';
+import {LayoutModule} from '@angular/cdk/layout';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +28,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatTableModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatDialogModule,
+    LayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

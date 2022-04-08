@@ -1,47 +1,45 @@
-<form [formGroup]="form"  class="container-sm" (ngSubmit)="onSubmit()" novalidate>
-  <div class="row g-2 align-items-center">
-    <div class="col-auto label-id">
-      <label for="formData" class="col-form-label">First Name</label>
-    </div>
-    <div class="col-auto">
-      <input type="text" formControlName="firstName" class="form-data form-control" placeholder="Enter you first name here" aria-describedby="passwordHelpInline"
-      required uniqueName>
-    </div>
-  </div>
-  <div class="row g-2 align-items-center">
-    <div class="col-auto label-id">
-      <label for="formData" class="col-form-label">Last Name</label>
-    </div>
-    <div class="col-auto">
-      <input type="text" formControlName="lastName" class="form-data form-control" placeholder="Enter you last name here" aria-describedby="passwordHelpInline"
-      required uniqueName>
-    </div>
-  </div>
-  <ng-container formArrayName="telephoneNumbers" class="row g-2 align-items-center">
-    <ng-container class="telephone-number" *ngFor="let telNumForm of telephoneNumbers.controls; let i = index" >
-      <div class="lesson-form-row row">
-        <div class="col-auto label-id">
-          <label [hidden]="i" for="formData" class="col-form-label">Telephone Number</label>
-        </div>
-        <div class="col-auto">
-          <input type="text" formControlName="{{i}}" class="form-data form-control" placeholder="Enter you Telephone number here" 
-          aria-describedby="passwordHelpInline" required telephoneNumber>
-        </div>
-        <div class="col-auto">
-          <button (click)="onRemoveBtnClick(i)" *ngIf="telephoneNumbers.length"><i class="material-icons">clear</i></button>
-        </div>
-      </div>
-    </ng-container>
-  </ng-container>
+<h1 mat-dialog-title>New Telephone Number</h1>
 
-  <button class="btn btn-primary" [disabled]="form.invalid" type="submit">Register</button>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+
+<div mat-dialog-content>
+
+  <mat-form-field appearance="outline">
+    <mat-label>First Name</mat-label>
+    <input matInput type="text" formControlName="firstName" placeholder="Enter you first name here">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Last Name</mat-label>
+    <input matInput type="text" formControlName="lastName" placeholder="Enter you last name here">
+  </mat-form-field>
+
+
+  <div formArrayName="telephoneNumbers">
+    <div *ngFor="let telNumForm of telephoneNumbers.controls; let i = index">
+    <mat-form-field [formControlName]="i" appearance="outline" ngDefaultControl>
+      <mat-label>Telephone Number</mat-label>
+      <input matInput type="text" formControlName="{{i}}" placeholder="Enter you Telephone number here">
+      <button mat-flat-button matSuffix aria-label="Example icon button with a plus one icon"
+      (click)="onRemoveBtnClick(i)" *ngIf="telephoneNumbers.controls[1]">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+    </div>
+  </div>
+
+</div>
+
+<mat-dialog-actions>
+  
+  <button button mat-fab color="primary" aria-label="Example icon button with a plus one icon"(click)="onAddBtnClick()">
+    <mat-icon>add</mat-icon>
+  </button>
+  <button class="submit-btn btn-primary" [disabled]="form.invalid" type="submit">{{actionBtn}}</button>
+
+</mat-dialog-actions>
+
+</form>
+
 
   
-
-  </form>
-
-
-  <button (click)="onAddBtnClick()">
-    <i class="material-icons">add</i>
-    <p>Add Telephone Number</p>
-  </button>

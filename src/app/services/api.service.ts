@@ -9,10 +9,18 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   postUser(data: any) {
-    return this.http.post<any>("http://localhost:3000/userList/", data);
+    return this.http.post<any>("http://localhost:3000/users/", data);
   }
 
   getUser() {
-    return this.http.get<any>("http://localhost:3000/userList/");
+    return this.http.get<any>("http://localhost:3000/users/");
+  }
+
+  editData(data: any, id:number) {
+    return this.http.put<any>("http://localhost:3000/users/"+id, data)
+  }
+
+  deleteData(id:number) {
+    return this.http.delete<any>("http://localhost:3000/users/"+id)
   }
 }
