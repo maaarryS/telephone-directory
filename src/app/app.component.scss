@@ -1,5 +1,22 @@
 $table-width: 35rem;
 
+table {
+  table-layout: fixed;
+    width: 100%;
+
+    td, th {
+      width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    button {
+      display: block;
+      margin: 0;
+    }
+}
+
 mat-toolbar {
   display: flex;
   padding: 0 20px;
@@ -25,6 +42,10 @@ mat-toolbar {
   margin: 0 auto;
   width: 80vw;
   padding: 10px;
+}
+
+.telNums {
+  display: block;
 }
 
 h1 {

@@ -33,7 +33,9 @@
     
       <ng-container matColumnDef="telephoneNumbers">
         <th mat-header-cell *matHeaderCellDef> Telephone Numbers </th>
-        <td mat-cell *matCellDef="let user"> {{user.telephoneNumbers}} </td>
+        <td mat-cell *matCellDef="let user">
+          <span class="telNums"> {{user.telephoneNumbers}} </span>
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="action">
